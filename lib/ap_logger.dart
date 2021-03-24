@@ -81,6 +81,17 @@ class APLogger {
     newLogCallback?.call(log);
   }
   
+  /// 自定义Log
+  void log(String content, {
+    bool print = true,
+    APLogLevel level = APLogLevel.Info
+  }) {
+    assert((){
+      _addLog(content: content, level: level, print: print);
+      return true;
+    }());
+  }
+  
   /// Info级别日志
   void info(String content, {bool print = true}) {
     assert((){
