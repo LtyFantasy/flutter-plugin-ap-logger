@@ -62,6 +62,7 @@ class APLogger {
   /// 添加日志
   void _addLog({String content, APLogLevel level, bool print}) {
     
+    content ??= '';
     if (print == true) {
       dev.log('[$moduleName - ${apLogLevelName(level)}] $content');
     }
