@@ -32,7 +32,7 @@ class _APLogItemState extends State<_APLogItem> {
         onLongPress: () {
           /// copy
           Clipboard.setData(ClipboardData(text: widget.log.content));
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          Scaffold.of(context).showSnackBar(SnackBar(
               content: Text('Copy Success', textAlign: TextAlign.center,)
           ));
         },
