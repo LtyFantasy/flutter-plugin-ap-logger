@@ -20,10 +20,10 @@ class APLogger {
   static List<APLogger> get loggers => _loggers;
   
   /// 添加Log回调
-  static Function(APLog log)? newLogCallback;
+  static Function(APLog log) newLogCallback;
   
   /// 添加Logger回调
-  static Function(APLogger logger)? newLoggerCallback;
+  static Function(APLogger logger) newLoggerCallback;
   
   /// ------------- Module Logger --------------
   
@@ -33,14 +33,15 @@ class APLogger {
   /// 是否搜索启用
   bool filterEnable = true;
   
-  APLogger._init(this.moduleName);
+  APLogger._init(String moduleName)
+      : moduleName = moduleName ?? '';
   
   /// 创建Logger时，将其添加进入全局队列
   ///
   /// 如果已经存在，直接返回该logger
   static APLogger build(String moduleName) {
     
-    APLogger? logger;
+    APLogger logger;
     for (APLogger obj in _loggers) {
       if (obj.moduleName == moduleName) {
         logger = obj;
@@ -59,7 +60,7 @@ class APLogger {
   /// ----------- Operation ------------
   
   /// 添加日志
-  void _addLog({required String content, required APLogLevel level, required bool print}) {
+  void _addLog({String content, APLogLevel level, bool print}) {
     
     if (print == true) {
       dev.log('[$moduleName - ${apLogLevelName(level)}] $content');
@@ -124,15 +125,15 @@ class APLog {
   // 生成时间
   final DateTime time;
   // 函数栈
-  final StackTrace? stackTrace;
+  final StackTrace stackTrace;
   // 折叠显示
   bool fold = false;
   
   APLog({
-    required this.level,
-    required this.module,
-    required this.content,
-    required this.time,
+    this.level,
+    this.module,
+    this.content,
+    this.time,
     this.stackTrace
   });
 }

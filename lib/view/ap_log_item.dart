@@ -5,7 +5,7 @@ class _APLogItem extends StatefulWidget {
   
   final APLog log;
   _APLogItem({
-    required this.log,
+    this.log,
   });
   
   @override
@@ -119,15 +119,6 @@ class _APLogItemState extends State<_APLogItem> {
             color: Colors.black87
         ),
       ),
-    );
-  }
-  
-  Widget _divider() {
-    
-    return Container(
-      margin: EdgeInsets.only(left: 0, right: 0),
-      color: Colors.black87,
-      height: 0.5,
     );
   }
   

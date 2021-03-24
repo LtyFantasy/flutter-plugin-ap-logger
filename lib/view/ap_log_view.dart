@@ -14,8 +14,8 @@ class _APLogFilter {
   
   List<APLogger> moduleFilter = APLogger.loggers;
   List<APLogLevel> levelFilter = [];
-  DateTime? filterStartTime;
-  DateTime? filterEndTime;
+  DateTime filterStartTime;
+  DateTime filterEndTime;
   
   _APLogFilter() {
     levelFilter.add(APLogLevel.Info);
@@ -143,7 +143,7 @@ class _APLogViewState extends State<APLogView> {
     // Level Filter
     if (!filter.levelFilter.contains(log.level)) return false;
     // Module Filter
-    APLogger? logger;
+    APLogger logger;
     for (APLogger obj in filter.moduleFilter) {
       if (obj.moduleName == log.module) {
         logger = obj;
