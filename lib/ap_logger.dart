@@ -9,7 +9,10 @@ class APLogger {
   /// ------------ Global -------------
   
   /// 最大日志条数
-  static const int _Max = 1000;
+  static const int Max = 1000;
+  
+  /// 日志拦截等级
+  static APLogLevel blockLevel = APLogLevel.Off;
   
   /// 全局日志组
   static List<APLog> _logs = [];
@@ -62,6 +65,10 @@ class APLogger {
   /// 添加日志
   void _addLog({String content, APLogLevel level, bool print}) {
     
+    if (blockLevel != null && blockLevel.index >= level.index) {
+      return;
+    }
+    
     content ??= '';
     if (print == true) {
       dev.log('[$moduleName - ${apLogLevelName(level)}] $content');
@@ -75,7 +82,7 @@ class APLogger {
     );
     _logs.insert(0, log);
     // 上限控制
-    if (_logs.length > _Max) {
+    if (_logs.length > Max) {
       _logs.removeLast();
     }
     newLogCallback?.call(log);

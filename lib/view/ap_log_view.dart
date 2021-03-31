@@ -45,6 +45,7 @@ class _APLogViewState extends State<APLogView> {
     super.initState();
     
     logs.addAll(APLogger.logs);
+    _filterLogs();
     APLogger.newLogCallback = _newLogCallback;
   }
   
@@ -100,7 +101,7 @@ class _APLogViewState extends State<APLogView> {
           else {
             logs.clear();
             logs.addAll(APLogger.logs);
-            _filterCards();
+            _filterLogs();
             setState(() {});
             APLogger.newLogCallback = _newLogCallback;
           }
@@ -120,13 +121,13 @@ class _APLogViewState extends State<APLogView> {
                 context: context,
                 backgroundColor: Colors.transparent,
                 builder: (ctx) {
-                  return APLogFilterPanel(_filter);
+                  return _APLogFilterPanel(_filter);
                 }
             );
             
             logs.clear();
             logs.addAll(APLogger.logs);
-            _filterCards();
+            _filterLogs();
             setState(() {});
           }
       );
@@ -155,7 +156,7 @@ class _APLogViewState extends State<APLogView> {
     return true;
   }
   
-  void _filterCards() {
+  void _filterLogs() {
     
     List<APLog> originLogs = logs;
     logs = [];

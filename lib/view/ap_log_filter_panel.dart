@@ -1,18 +1,18 @@
 
 part of 'ap_log_view.dart';
 
-class APLogFilterPanel extends StatefulWidget {
+class _APLogFilterPanel extends StatefulWidget {
   
   final _APLogFilter filter;
-  APLogFilterPanel(this.filter);
+  _APLogFilterPanel(this.filter);
   
   @override
   State<StatefulWidget> createState() {
-    return APLogFilterPanelState();
+    return _APLogFilterPanelState();
   }
 }
 
-class APLogFilterPanelState extends State<APLogFilterPanel> {
+class _APLogFilterPanelState extends State<_APLogFilterPanel> {
   
   @override
   Widget build(BuildContext context) {
